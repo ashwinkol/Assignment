@@ -144,20 +144,7 @@ function Course() {
         setSelectedCourse(item);
       }
     });
-    // setIsSearch(true);
-    // var input, filter, ul, li, a, i;
-    // input = document.getElementById("mySearch");
-    // filter = input.value.toUpperCase();
-    // ul = document.getElementById("myMenu");
-    // li = ul.getElementsByTagName("li");
-    // for (i = 0; i < li.length; i++) {
-    //   a = li[i].getElementsByTagName("a")[0];
-    //   if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
-    //     li[i].style.display = "";
-    //   } else {
-    //     li[i].style.display = "none";
-    //   }
-    // }
+  
   };
 
   const disableIsSearch = () => {
@@ -197,6 +184,7 @@ function Course() {
               <li key={selectedCourse.course_id}>
                 <a href="/">
                   <div className="taskSearchBox" align="center">
+                   
                     <table id="taskTable" key={selectedCourse.course_id}>
                       <tbody align="center">
                         <tr>
@@ -245,7 +233,7 @@ function Course() {
                         <tr>
                           <td align="center">
                             <button
-                              onClick={() => navigate("/CourseDetails/1")}
+                              onClick={() => navigate(`/CourseDetails/${selectedCourse.course.id}`)}
                               id="notesBoxButton"
                               className="bg-blue-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
                             >

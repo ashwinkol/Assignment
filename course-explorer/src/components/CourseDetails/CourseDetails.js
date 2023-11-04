@@ -14,9 +14,9 @@ import {
 function CourseDetails() {
   const [isExpanded, setIsExpanded] = useState(false);
   const [courseDetails, setCourseDetails] = useState({});
-  const { id } = useParams();
 
   const [open, setOpen] = React.useState(false);
+  const { id } = useParams();
 
  
   const toggleOpen = () => setOpen((cur) => !cur);
@@ -27,7 +27,8 @@ function CourseDetails() {
   }, [id]); // Fetch course details whenever the 'id' parameter changes
 
   const getCourse = () => {
-    const url = `http://localhost:8080/CourseDetails/${id}`;
+    
+    const url = `http://localhost:8080/coursesDetails/${id}`;
     axios.get(url)
       .then((response) => {
         if (response.data != null) {
@@ -46,6 +47,8 @@ function CourseDetails() {
       });
   };
 
+  console.log('here is the course details ',courseDetails)
+
   return (
     <>
     <Link to={'/Course'} className='LinkColor'>Go Back {'>'}</Link>
@@ -55,24 +58,28 @@ function CourseDetails() {
           <tr>
             <td>
               <h3 id="searchFont">Course name</h3>
+              <h4>{courseDetails.course_name}</h4>
             </td>
           </tr>
 
           <tr>
             <td>
               <h3 id="searchFont">Instructor's name </h3>
+              <h4>{courseDetails.instructor_name}</h4>
             </td>
           </tr>
 
           <tr>
             <td>
               <h3 id="searchFont">Description  </h3>
+              <h4>{courseDetails.description}</h4>
             </td>
           </tr>
 
           <tr>
             <td>
               <h3 id="searchFont">Enrollment status </h3>
+              <h4>{courseDetails.description}</h4>
             </td>
           </tr>
 
@@ -80,41 +87,39 @@ function CourseDetails() {
           <tr>
             <td>
               <h3 id="searchFont">Course duration </h3>
+              <h4>{courseDetails.course_duration}</h4>
             </td>
           </tr>
 
           <tr>
             <td>
               <h3 id="searchFont">Schedule</h3>
+              <h4>{courseDetails.schedule}</h4>
             </td>
           </tr>
 
           <tr>
             <td>
               <h3 id="searchFont">Location</h3>
+              <h4>{courseDetails.location}</h4>
             </td>
           </tr>
 
           <tr>
             <td>
               <h3 id="searchFont">Pre-requisites</h3>
+              {courseDetails.pre_requisites}
             </td>
           </tr>
 
-          <tr>
-            <td>
-              <h3 id="searchFont">Syllabus as an expandable item</h3>
-            </td>
-          </tr>
-
+        <br />
           <tr>
             <Button onClick={toggleOpen} className="text-white bg-blue-900 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">More Details</Button>
             <Collapse open={open}>
               <Card className="my-4 mx-auto w-8/12">
                 <CardBody>
                   <Typography>
-                    Use our Tailwind CSS collapse for your website. You can use if for
-                    accordion, collapsible items and much more.
+                  {courseDetails.description}
                   </Typography>
                 </CardBody>
               </Card>
@@ -124,7 +129,7 @@ function CourseDetails() {
         </tbody>
 
       </table>
-
+      <br />
 
     </div>
     </>

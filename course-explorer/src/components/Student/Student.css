@@ -57,3 +57,15 @@ hr{
     }
    
 }
+
+.studentSearchBox {
+
+    width: 80%;
+    background-color: white;
+    border-radius: 15px;
+    border-style: solid;
+    border-color: #2a4365;
+    border-width: 2px;
+    margin-top: 10px;
+    margin: auto;
+}
