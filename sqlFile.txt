@@ -1,0 +1,40 @@
+CREATE DATABASE course_management;
+use course_management;
+
+CREATE TABLE courses (
+    course_id INT NOT NULL AUTO_INCREMENT,
+    Course_name VARCHAR(255) NOT NULL,
+    detail VARCHAR(255),
+    type VARCHAR(255),
+    instructor_name VARCHAR(255),
+    description TEXT,
+    enrollment_status VARCHAR(20) NOT NULL,
+    course_duration INT,
+    schedule VARCHAR(255),
+    location VARCHAR(255),
+    pre_requisites TEXT,
+    syllabus TEXT,
+    PRIMARY KEY (course_id)
+);
+
+INSERT INTO courses 
+(Course_name, detail, type, instructor_name, description, enrollment_status, course_duration, schedule, location, pre_requisites, syllabus) VALUES
+('Introduction to Computer Science', 'An introductory course', 'Lecture', 'Dr. Smith', 'This course provides an overview of computer science fundamentals.', 'Open', 16, 'Mon-Wed 10:00 AM', 'Room 101', 'None', 'Link to syllabus'),
+('Data Structures and Algorithms', 'Advanced course on data structures and algorithms', 'Lecture', 'Prof. Johnson', 'Learn about various data structures and algorithmic techniques.', 'Open', 20, 'Tue-Thu 2:00 PM', 'Room 102', 'Prerequisite: Introduction to Computer Science', 'Link to syllabus'),
+('Web Development', 'Front-end and back-end development', 'Lab', 'Sarah Davis', 'Develop web applications using HTML, CSS, and JavaScript.', 'Open', 24, 'Sat 9:00 AM', 'Lab 1', 'Prerequisite: Introduction to Computer Science', 'Link to syllabus');
+
+CREATE TABLE student_records (
+    roll_no INT NOT NULL AUTO_INCREMENT,
+    student_name VARCHAR(255),
+    course_name VARCHAR(255),
+    course_id INT,
+    progress INT,
+    PRIMARY KEY (roll_no)
+);
+
+INSERT INTO student_records (student_name, course_name, course_id, progress) VALUES
+('John Doe', 'Introduction to Computer Science', 1, 90),
+('Jane Smith', 'Data Structures and Algorithms', 2, 85),
+('Alice Johnson', 'Web Development', 3, 78),
+('Bob Wilson', 'Data Structures and Algorithms', 2, 92),
+('Eva Brown', 'Web Development', 3, 88);

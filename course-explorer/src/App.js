@@ -17,15 +17,10 @@ function App() {
       <Routes>
         <Route index element={<Home />} />
         <Route path="/Course" element={<Course />} />
-        <Route path="/AddCourse" element={<AddCourse />} />
+        <Route path="/AddCourse" element={<Home />} />
         <Route path="/CourseDetails/:id" element={<CourseDetails />} />
         <Route path="/Student/Home" element={<Student />} />
         <Route path="/Student/Learning" element={<Learning />} />
-
-
-
-
-
       </Routes>
 
     </BrowserRouter>
