@@ -180,31 +180,78 @@ function Course() {
             {taskList.map((elem) => {
               if (isSearch) {
                 return (
-                  <div>
-                    <img src={elem.img} />
-                    <h4>{elem?.Course_name}</h4>
-                  </div>
-                  // <li key={elem.id}>
-                  //   <div className="taskSearchBox" align="center">
-                  //     <table id="taskTable" key={elem.id}>
-                  //       <tbody align="center">
-                  //         <tr>
-                  //           <td align="center">
-                  //             <button
-                  //               onClick={() =>
-                  //                 (window.location.href = `http://localhost:3000/CourseDetails/${elem.id}`)
-                  //               }
-                  //               id="notesBoxButton"
-                  //               className="bg-blue-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
-                  //             >
-                  //               Details
-                  //             </button>
-                  //           </td>
-                  //         </tr>
-                  //       </tbody>
-                  //     </table>
-                  //   </div>
-                  // </li>
+                  <li key={elem.id}>
+                    <a href="/">
+                      <div className="taskSearchBox" align="center">
+                        <table id="taskTable" key={elem.id}>
+                          <tbody align="center">
+                            {[
+                              { title: "Course name", detail: "" },
+                              "Instructor's name",
+                              "Description",
+                              "Enrollment status",
+                            ]}
+                            <tr>
+                              <td>
+                                <h3 id="searchFont">Course name</h3>
+                                <h5>{elem.title}</h5>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <h3 id="searchFont">Course duration </h3>
+                                <h5>{elem.progress}</h5>
+                              </td>
+                            </tr>
+
+                            <tr>
+                              <td>
+                                <h3 id="searchFont">Schedule</h3>
+                                <h5>{elem.progress}</h5>
+                              </td>
+                            </tr>
+
+                            <tr>
+                              <td>
+                                <h3 id="searchFont">Location</h3>
+                                <h5>{elem.progress}</h5>
+                              </td>
+                            </tr>
+
+                            <tr>
+                              <td>
+                                <h3 id="searchFont">Pre-requisites</h3>
+                                <h5>{elem.progress}</h5>
+                              </td>
+                            </tr>
+
+                            <tr>
+                              <td>
+                                <h3 id="searchFont">
+                                  Syllabus as an expandable item
+                                </h3>
+                                <h5>{elem.progress}</h5>
+                              </td>
+                            </tr>
+
+                            <tr>
+                              <td align="center">
+                                <button
+                                  onClick={() =>
+                                    (window.location.href = `http://localhost:3000/CourseDetails/${elem.id}`)
+                                  }
+                                  id="notesBoxButton"
+                                  className="bg-blue-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
+                                >
+                                  Details
+                                </button>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </a>
+                  </li>
                 );
               } else {
               }
