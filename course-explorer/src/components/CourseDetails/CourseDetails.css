@@ -1,0 +1,295 @@
+.collapsible {
+    background-color: #777;
+    color: white;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+  }
+
+  .LinkColor {
+    color: blue;
+  }
+  
+  .active, .collapsible:hover {
+    background-color: #e71d1d;
+  }
+  
+  .content {
+    padding: 0 18px;
+    display: none;
+    overflow: hidden;
+    background-color: #f1f1f1;
+  }
+
+  .courseDetails {
+    width: 500px;
+    height: 600px;
+    background-color: white;
+    border-radius: 25px;
+    border-style: solid;
+    border-color: #2a4365;
+    border-width: 2px;
+    margin: 0 auto; /* Center horizontally */
+}
+
+
+#tableOuter h1 {
+    color: black;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 10px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    padding: 1px;
+
+    background-color: rgb(240, 240, 240);
+}
+
+.leftcolumn {
+    float: left;
+    width: 24%;
+
+
+}
+
+/* Right column */
+.rightcolumn {
+    float: left;
+    width: 75%;
+    padding-left: 5px;
+
+}
+
+.taskBox {
+    float: left;
+    width: 250px;
+    height: 600px;
+    background-color: white;
+    margin-left: 65px;
+    margin-top: 7px;
+    margin-bottom: 10px;
+    border-radius: 25px;
+    border-style: solid;
+    border-color: #2a4365;
+    border-width: 2px;
+}
+
+.notesBox h1 {}
+
+
+.taskSearchBox {
+
+    width: 80%;
+    background-color: white;
+    margin: 15px;
+    border-radius: 15px;
+    border-style: solid;
+    border-color: #2a4365;
+    border-width: 2px;
+}
+
+#searchFont {
+    font-weight: bold;
+    text-align: center;
+    color: black;
+    text-decoration: none;
+    margin: 5px;
+
+}
+
+
+
+
+
+.card {
+    background-color: white;
+    padding: 20px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    align-items: center;
+    height: 100%;
+}
+
+div#userAddMenu {
+
+    background-color: white;
+    padding: 20px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    align-items: center;
+
+}
+
+
+
+#searchButton {
+
+    margin-top: 10px;
+}
+
+#mySearch {
+    width: 100%;
+    font-size: 18px;
+    padding: 5px;
+    border: 1px solid #ddd;
+}
+
+#myMenu {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+#topTaskTable {
+    margin-left: 35%;
+}
+
+#notesTable {
+    margin: 10%;
+
+}
+
+#notesBoxButton {
+    margin: 10px;
+}
+
+input,
+textarea {
+    border: 1px solid #ddd;
+}
+
+#userMenu {
+    margin-left: 5%;
+    margin-bottom: 20px;
+
+}
+
+
+
+#taskTable h1 {
+
+
+    color: black;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 10px;
+}
+
+
+button.fa-solid.fa-pen-to-square {
+
+    margin-left: 37px;
+
+    margin-left: 31px;
+    margin-top: 20px;
+}
+
+
+@media screen and (max-width: 600px) {
+
+    .leftcolumn,
+    .rightcolumn {
+        width: 100%;
+        padding: 0;
+    }
+
+    #userMenu {
+        margin-left: 20%;
+        margin-top: 20px;
+        margin-bottom: 20px;
+
+    }
+
+    #boldHeading {
+        text-align: center;
+        font-weight: bolder;
+        font-size: 25px;
+    }
+
+    input,
+    textarea {
+        border: 1px solid #ddd;
+        margin-left: 3%;
+    }
+
+
+    .taskSearchBox {
+
+        width: 80%;
+        background-color: white;
+        margin-left: 10%;
+        border-radius: 15px;
+        border-style: solid;
+        border-color: #2a4365;
+        border-width: 3px;
+    }
+
+    .box {
+
+        width: 250px;
+        height: 250px;
+        background-color: white;
+        margin-left: 20%;
+        margin-top: 2px;
+        border-radius: 25px;
+        margin-left: 20%;
+    }
+
+    .taskBox {
+        float: left;
+        width: 250px;
+        height: 300px;
+        background-color: white;
+        border-radius: 25px;
+        border-style: solid;
+        border-color: #2a4365;
+        border-width: 2px;
+        margin-left: 20%;
+    }
+
+    .courseDetails {
+        float: left;
+        width: 500px;
+        height: 300px;
+        background-color: white;
+        border-radius: 25px;
+        border-style: solid;
+        border-color: #2a4365;
+        border-width: 2px;
+        margin-left: 20%;
+    }
+
+
+    #topTaskTable {
+        margin-left: 12%;
+    }
+
+    #userAddMenu {
+        background-color: white;
+        padding: 5%;
+        height: 100%;
+
+    }
+
+    #mySearch {
+        width: 90%;
+        font-size: 18px;
+        padding: 5px;
+        border: 1px solid #ddd;
+        margin-top: 15px;
+        margin-left: 15px;
+    }
+
+    
+}
+

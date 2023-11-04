@@ -1,0 +1,14 @@
+nav.bg-white-900 {
+    background-color: white;
+}
+
+
+
+
+@media screen and (max-width: 800px) {
+
+.px-05.pt-2.pb-3.space-y-10.sm\:px-20 {
+    margin-left: 40%;
+}
+
+}

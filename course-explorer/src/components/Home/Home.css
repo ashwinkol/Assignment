@@ -1,0 +1,60 @@
+#homeBg {
+    background-image: url('../Images/background2.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 80%;
+  }
+  
+
+#homeButtons {
+  margin-left: 16%;
+  margin-top: 7%;
+}
+
+#fontHome {
+  font-size : 40px;
+  font-family: 'Rubik', sans-serif;
+  font-weight: bold;
+  color: #444444;
+  margin-left: 90px;
+}
+
+
+@media only screen and (max-width: 800px) {
+    body {
+      height: 100vh;
+    }
+
+    #homeButtons {
+      margin-right: 12%;
+      margin-top: 5%;
+    }
+    
+    #homeBg{
+      height: 100vh;  
+      background-image: url('../Images/mobileBg.svg'); 
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+
+    #fontHome {
+      font-family: 'Rubik', sans-serif;
+      font-weight: bold;
+      color: #444444;
+      margin-left: 5px;
+      margin-top: 10px;
+    }
+    
+    
+  }
+  
+
+ 
+  
+  .btn-primary {
+    @apply bg-blue-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full;
+    /* #2a4365 */
+    /* #00296b */
+  }
