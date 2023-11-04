@@ -1,27 +1,24 @@
 import React, { useEffect, useState } from "react";
 import "../Course/Course.css";
+import javascript from "../assets/javascript.avif";
+import java from "../assets/java.png";
+import python from "../assets/python.jpg";
+import golang from "../assets/golang.png";
+import Cards from "./Cards";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 function Course() {
   // getting data from local Storag
-
+  const navigate = useNavigate();
   const [taskList, setTasksList] = useState([]);
-
   const [isSearch, setIsSearch] = useState(false);
-
-  /* Add User */
-
-  /* Edit User */
-
-  /* Delete Note */
-
-  /* Delete Tasks */
-
-  /* Edit Tasks */
-
-  //Adding data to Local Storage
+  const [selectedCourse, setSelectedCourse] = useState({});
+  const [loading, setLoading] = useState(true);
 
   const dummy = [
     {
-      Course_name: "javascript",
+      course_name: "javascript",
+      img: javascript,
       detail: "javascript",
       type: "programing",
       instructor_name: "AK Author",
@@ -46,7 +43,8 @@ function Course() {
       ],
     },
     {
-      Course_name: "java",
+      course_name: "java",
+      img: java,
       detail: "java",
       type: "programing",
       instructor_name: "AK Author",
@@ -71,7 +69,8 @@ function Course() {
       ],
     },
     {
-      Course_name: "python",
+      course_name: "python",
+      img: python,
       detail: "python",
       type: "programing",
       instructor_name: "AK Author",
@@ -96,7 +95,8 @@ function Course() {
       ],
     },
     {
-      Course_name: "go lang",
+      course_name: "go lang",
+      img: golang,
       detail: "go lang",
       type: "programing",
       instructor_name: "AK Author",
@@ -123,29 +123,45 @@ function Course() {
   ];
 
   useEffect(() => {
-    setTasksList(dummy);
+    axios.get("http://localhost:8080/courses").then((res) => {
+      if (res.status === 200) {
+        setTasksList(res.data.data);
+      } else {
+        setTasksList([]);
+      }
+      setLoading(false);
+    });
   }, []);
 
   //Search Notes
-  const searchNote = () => {
-    setIsSearch(true);
-    var input, filter, ul, li, a, i;
-    input = document.getElementById("mySearch");
-    filter = input.value.toUpperCase();
-    ul = document.getElementById("myMenu");
-    li = ul.getElementsByTagName("li");
-    for (i = 0; i < li.length; i++) {
-      a = li[i].getElementsByTagName("a")[0];
-      if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
-        li[i].style.display = "";
-      } else {
-        li[i].style.display = "none";
+  const searchNote = (e) => {
+    const value = e.target.value.toLowerCase();
+    taskList.map((item) => {
+      if (
+        item.course_name.toLowerCase().includes(value) ||
+        item.instructor_name.toLowerCase().includes(value)
+      ) {
+        setSelectedCourse(item);
       }
-    }
+    });
+    // setIsSearch(true);
+    // var input, filter, ul, li, a, i;
+    // input = document.getElementById("mySearch");
+    // filter = input.value.toUpperCase();
+    // ul = document.getElementById("myMenu");
+    // li = ul.getElementsByTagName("li");
+    // for (i = 0; i < li.length; i++) {
+    //   a = li[i].getElementsByTagName("a")[0];
+    //   if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+    //     li[i].style.display = "";
+    //   } else {
+    //     li[i].style.display = "none";
+    //   }
+    // }
   };
 
   const disableIsSearch = () => {
-    setIsSearch(false);
+    setSelectedCourse({});
   };
 
   return (
@@ -160,7 +176,7 @@ function Course() {
                   <input
                     type="text"
                     id="mySearch"
-                    onKeyUp={searchNote}
+                    onChange={searchNote}
                     placeholder="Search..."
                   />
                   <button
@@ -177,87 +193,72 @@ function Course() {
           </table>
 
           <ul id="myMenu">
-            {taskList.map((elem) => {
-              if (isSearch) {
-                return (
-                  <li key={elem.id}>
-                    <a href="/">
-                      <div className="taskSearchBox" align="center">
-                        <table id="taskTable" key={elem.id}>
-                          <tbody align="center">
-                            {[
-                              { title: "Course name", detail: "" },
-                              "Instructor's name",
-                              "Description",
-                              "Enrollment status",
-                            ]}
-                            <tr>
-                              <td>
-                                <h3 id="searchFont">Course name</h3>
-                                <h5>{elem.title}</h5>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <h3 id="searchFont">Course duration </h3>
-                                <h5>{elem.progress}</h5>
-                              </td>
-                            </tr>
+            {Object.keys(selectedCourse).length > 0 && (
+              <li key={selectedCourse.course_id}>
+                <a href="/">
+                  <div className="taskSearchBox" align="center">
+                    <table id="taskTable" key={selectedCourse.course_id}>
+                      <tbody align="center">
+                        <tr>
+                          <td>
+                            <h3 id="searchFont">Course name</h3>
+                            <h5>{selectedCourse.course_name}</h5>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <h3 id="searchFont">Course duration </h3>
+                            <h5>{selectedCourse.course_duration}</h5>
+                          </td>
+                        </tr>
 
-                            <tr>
-                              <td>
-                                <h3 id="searchFont">Schedule</h3>
-                                <h5>{elem.progress}</h5>
-                              </td>
-                            </tr>
+                        <tr>
+                          <td>
+                            <h3 id="searchFont">Schedule</h3>
+                            <h5>{selectedCourse.schedule}</h5>
+                          </td>
+                        </tr>
 
-                            <tr>
-                              <td>
-                                <h3 id="searchFont">Location</h3>
-                                <h5>{elem.progress}</h5>
-                              </td>
-                            </tr>
+                        <tr>
+                          <td>
+                            <h3 id="searchFont">Location</h3>
+                            <h5>{selectedCourse.location}</h5>
+                          </td>
+                        </tr>
 
-                            <tr>
-                              <td>
-                                <h3 id="searchFont">Pre-requisites</h3>
-                                <h5>{elem.progress}</h5>
-                              </td>
-                            </tr>
+                        <tr>
+                          <td>
+                            <h3 id="searchFont">Pre-requisites</h3>
+                            <h5>{selectedCourse.pre_requisites}</h5>
+                          </td>
+                        </tr>
 
-                            <tr>
-                              <td>
-                                <h3 id="searchFont">
-                                  Syllabus as an expandable item
-                                </h3>
-                                <h5>{elem.progress}</h5>
-                              </td>
-                            </tr>
+                        <tr>
+                          <td>
+                            <h3 id="searchFont">
+                              Syllabus as an expandable item
+                            </h3>
+                            <h5>{selectedCourse.syllabus}</h5>
+                          </td>
+                        </tr>
 
-                            <tr>
-                              <td align="center">
-                                <button
-                                  onClick={() =>
-                                    (window.location.href = `http://localhost:3000/CourseDetails/${elem.id}`)
-                                  }
-                                  id="notesBoxButton"
-                                  className="bg-blue-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
-                                >
-                                  Details
-                                </button>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    </a>
-                  </li>
-                );
-              } else {
-              }
-
-              return null;
-            })}
+                        <tr>
+                          <td align="center">
+                            <button
+                              onClick={() => navigate("/CourseDetails/1")}
+                              id="notesBoxButton"
+                              className="bg-blue-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
+                            >
+                              Details
+                            </button>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </a>
+              </li>
+            )}
           </ul>
         </div>
       </div>
@@ -286,96 +287,20 @@ function Course() {
           </select>
         </div>
 
-        <div className="row" align="center">
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            gap: "6rem",
+            paddingLeft: "0.5rem",
+            paddingTop: "0.5rem",
+            rowGap: "1rem",
+          }}
+        >
           {taskList.map((elem) => {
             // if (filterTask === "All")
             {
-              return (
-                <div className="taskBox">
-                  <table id="taskTable" key={elem.id}>
-                    <tbody align="center">
-                      <tr>
-                        <td>
-                          <h3 id="searchFont">Course name</h3>
-                          <h5>{elem.title}</h5>
-                        </td>
-                      </tr>
-
-                      <tr>
-                        <td>
-                          <h3 id="searchFont">Instructor's name </h3>
-                          <h5>{elem.task}</h5>
-                        </td>
-                      </tr>
-
-                      <tr>
-                        <td>
-                          <h3 id="searchFont">Description </h3>
-                          <h5>{elem.user}</h5>
-                        </td>
-                      </tr>
-
-                      <tr>
-                        <td>
-                          <h3 id="searchFont">Enrollment status </h3>
-                          <h5>{elem.progress}</h5>
-                        </td>
-                      </tr>
-
-                      <tr>
-                        <td>
-                          <h3 id="searchFont">Course duration </h3>
-                          <h5>{elem.progress}</h5>
-                        </td>
-                      </tr>
-
-                      <tr>
-                        <td>
-                          <h3 id="searchFont">Schedule</h3>
-                          <h5>{elem.progress}</h5>
-                        </td>
-                      </tr>
-
-                      <tr>
-                        <td>
-                          <h3 id="searchFont">Location</h3>
-                          <h5>{elem.progress}</h5>
-                        </td>
-                      </tr>
-
-                      <tr>
-                        <td>
-                          <h3 id="searchFont">Pre-requisites</h3>
-                          <h5>{elem.progress}</h5>
-                        </td>
-                      </tr>
-
-                      <tr>
-                        <td>
-                          <h3 id="searchFont">
-                            Syllabus as an expandable item
-                          </h3>
-                          <h5>{elem.progress}</h5>
-                        </td>
-                      </tr>
-
-                      <tr>
-                        <td align="center">
-                          <button
-                            onClick={() =>
-                              (window.location.href = `http://localhost:3000/CourseDetails/${elem.id}`)
-                            }
-                            id="notesBoxButton"
-                            className="bg-blue-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
-                          >
-                            Details
-                          </button>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              );
+              return <Cards elem={elem} />;
             }
           })}
         </div>

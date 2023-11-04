@@ -251,5 +251,9 @@ button.fa-solid.fa-pen-to-square {
         margin-left: 15px;
     }
 
-    
+
+}
+
+.imghover:hover {
+    transform: scale(1.2);
 }
